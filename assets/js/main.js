@@ -12,6 +12,13 @@ function ajustaTamanhoPalcoJogo() {
 ajustaTamanhoPalcoJogo();
 
 function posicaoRandomica() {
+    
+    // Remover o mosquito anterior (caso exista)
+    if (document.querySelector('#mosquito')) {
+        document.querySelector('#mosquito').remove();
+    }
+
+    
     // Criando posições aleatórias
     let posicaoX = Math.floor(Math.random() * largura) - 90;
     let posicaoY = Math.floor(Math.random() * altura) - 90;
@@ -21,7 +28,6 @@ function posicaoRandomica() {
 
     console.log(posicaoX, posicaoY)
 
-
     // Criar o elemento HTML
     const mosquito = document.createElement('img');
     mosquito.src = 'assets/img/mosca.png';
@@ -29,14 +35,22 @@ function posicaoRandomica() {
     mosquito.style.left = `${posicaoX}px`;
     mosquito.style.top = `${posicaoY}px`;
     mosquito.style.position = 'absolute';
+    mosquito.id = 'mosquito';
 
     document.body.appendChild(mosquito);
 
-    console.log(ladoAleatorio());
+    ladoAleatorio();
 }
 
-posicaoRandomica();
 
+
+setInterval(function() {
+    posicaoRandomica()
+}, 1000);
+
+
+
+// Função Responsável por diferenciar os tamanhos dos mosquitos
 function tamanhoAleatorio() {
     let classe = Math.floor(Math.random() * 3);
     
@@ -50,6 +64,9 @@ function tamanhoAleatorio() {
     } 
 }
 
+
+
+// Função Responsável por variar o lado para qual o mosquito olha 
 function ladoAleatorio() {
     let classe = Math.floor(Math.random() * 2);
 
