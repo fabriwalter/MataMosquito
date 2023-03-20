@@ -19,7 +19,7 @@ function posicaoRandomica() {
         document.querySelector('#mosquito').remove();
 
         if (vidas > 3) {
-            alert('Interromper o jogo');
+            window.location.href = 'fim_de_jogo.html'
         } else {
             document.querySelector('#v' + vidas).src ='assets/img/coracao_vazio.png';
             
