@@ -4,6 +4,19 @@ let largura;
 let vidas = 1;
 let tempo = 15;
 
+let criaMosquitoTempo = 1500;
+
+let nivel = window.location.search;
+nivel = nivel.replace('?', '');
+
+if (nivel === 'normal') {
+    criaMosquitoTempo = 1500;
+} else if (nivel === 'dificil') {
+    criaMosquitoTempo = 1000;
+} else if (nivel === 'impossivel') {
+    criaMosquitoTempo = 750;
+}
+
 document.querySelector('#cronometro').innerHTML = tempo; 
 
 function ajustaTamanhoPalcoJogo() {
@@ -75,7 +88,7 @@ function posicaoRandomica() {
 
 let criaMosquito = setInterval(function() {
     posicaoRandomica()
-}, 2000);
+}, criaMosquitoTempo);
 
 
 
@@ -115,5 +128,5 @@ function iniciarJogo() {
         return false;
     }
 
-    
+    window.location.href = "index.html?" + nivel;
 }
