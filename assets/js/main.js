@@ -2,6 +2,9 @@
 let altura;
 let largura;
 let vidas = 1;
+let tempo = 15;
+
+document.querySelector('#cronometro').innerHTML = tempo; 
 
 function ajustaTamanhoPalcoJogo() {
     altura = window.innerHeight;
@@ -11,6 +14,19 @@ function ajustaTamanhoPalcoJogo() {
 }
 
 ajustaTamanhoPalcoJogo();
+
+const cronometro = setInterval(function() {
+    
+    tempo -= 1;
+
+    if (tempo < 0) {
+        clearInterval(cronometro);
+        clearInterval(criaMosquito);
+        alert('Vitória');
+    } else {
+        document.querySelector('#cronometro').innerHTML = tempo;
+    } 
+}, 1000)
 
 function posicaoRandomica() {
     
@@ -57,7 +73,7 @@ function posicaoRandomica() {
 
 
 
-setInterval(function() {
+let criaMosquito = setInterval(function() {
     posicaoRandomica()
 }, 2000);
 
